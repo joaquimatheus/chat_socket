@@ -10,8 +10,9 @@ import { GlobalStyles } from './themes/globalStyles'
 import { defaultThemes, ITheme } from './themes/themes'
 
 import Login from "./pages/Login"
-
 import Chat from './pages/Chat';
+
+import ThemePicker from './components/ThemePicker'
 
 function App() {
     const loggedIn = getFromLocalStorage("login-state")
@@ -46,6 +47,7 @@ function App() {
                                 {loggedIn && ( 
                                     <NavLinks onClick={logoutHandler}>Logout</NavLinks>
                                 )}
+                                <ThemePicker themeSetter={setSelectedTheme}/>
                             </Nav>
                         </header>
                             <Routes>
