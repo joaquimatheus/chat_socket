@@ -1,18 +1,18 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { Nav, NavLinks, StyledApp } from './styles'
 import { ThemeProvider } from 'styled-components'
-import { BrowserRouter, Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
-import { getFromLocalStorage, setToLocalStorage } from './helpers/storage'
+import { getFromLocalStorage, setToLocalStorage } from '../../helpers/storage'
 
-import { useTheme } from './themes/useTheme'
-import { GlobalStyles } from './themes/globalStyles'
-import { defaultThemes, ITheme } from './themes/themes'
+import { useTheme } from '../../themes/useTheme'
+import { GlobalStyles } from '../../themes/globalStyles'
+import { defaultThemes, ITheme } from '../../themes/themes'
 
-import Login from "./pages/Login"
-import Chat from './pages/Chat';
+import Login from "../../pages/Login"
+import Chat from '../../pages/Chat';
 
-import ThemePicker from './components/ThemePicker'
+import ThemePicker from '../../components/ThemePicker'
 
 function App() {
     const loggedIn = getFromLocalStorage("login-state")
