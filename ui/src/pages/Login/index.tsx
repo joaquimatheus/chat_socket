@@ -33,8 +33,8 @@ const Login = () => {
                     placeholder="Password"
                     required
                 />
+                <button type="submit">Login</button>
             </form>
-            <button type="submit">Login</button>
         </StyledLogin>
     )
 }

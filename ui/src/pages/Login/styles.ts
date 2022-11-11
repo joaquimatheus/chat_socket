@@ -20,7 +20,7 @@ export const StyledLogin = styled.div`
         padding: 15px 20px;
         border-radius: 6px;
         border: none;
-        background-color:: var(--primary);
+        background-color: var(--primary);
         --switch: calc((var(--primary-val) - var(--threshold)) * -100%);
         color: hsla(0, 0%, var(--switch), 70%);
         font-family: inherit;
