@@ -58,7 +58,7 @@ function App() {
                                     }
                                 />
                                 <Route path="/login" element={<Login />} />
-                                <Route path="/chat" element={<Chat />} />
+                                <Route path="/chat" element={<Chat chatAnimationDelay={600} />} />
                             </Routes>
                     </StyledApp>
                 </ThemeProvider>
