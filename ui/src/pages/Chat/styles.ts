@@ -25,15 +25,15 @@ export const StyledChat = styled.div`
             opacity: 0;
             transform: scale(0.9);
         }
-    }
-    &-enter-done {
-        opacity; 1;
-        transform: scale(1);
+        &-enter-done {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 `
 
 export const ChatInput = styled.div`
-    dispaly: flex;
+    display: flex;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
 

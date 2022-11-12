@@ -42,20 +42,19 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
 
         inputRef.current.value = ""
         inputRef.current.focus()
-        
+
         const chat = {
             id: uuidv4(),
             text: text,
-            type: ChatType.USER,
+            type: ChatType.USER
         }
-
-        setChats((prev) => [...prev, chat])
+        setChats((prev) => [ ...prev, chat ])
     }
 
     return (
         <StyledChat>
             {!loggedIn && <Navigate to="/" replace />}
-            <TransitionGroup compoennt="ul">
+            <TransitionGroup component="ul">
                 <>
                     {chats.map((chat, index) => (
                         <CSSTransition
@@ -65,24 +64,24 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
                             timeout={{
                                 enter: chat.isDefault
                                     ? chatAnimationDelay + (index + 1)
-                                    : TRANSITION_DELAY
+                                    : TRANSITION_DELAY,
                             }}
                         >
-                            <ChatBubble text={chat.text} type={chat.type}/>
+                            <ChatBubble text={chat.text} type={chat.type}></ChatBubble>
                         </CSSTransition>
                     ))}
                 </>
-                <div ref={chatsEndRef} />
+            <div ref={chatsEndRef}/>
             </TransitionGroup>
             <ChatInput>
                 <input 
-                    ref={inputRef}
-                    type="text"
-                    placeholder="Ask something..."
-                    onKeyDown={(e) => e.key !== "Enter" || inputChatHandler() }
+                    ref={inputRef} 
+                    type="text" 
+                    placeholder="Ask something"
+                    onKeyDown={(e) => e.key !== "Enter" || inputChatHandler()}
                 />
                 <button onClick={() => inputChatHandler()}>
-                    <Icon src="send.svg"/>
+                    <Icon  src="send.svg"/>
                 </button>
             </ChatInput>
         </StyledChat>
