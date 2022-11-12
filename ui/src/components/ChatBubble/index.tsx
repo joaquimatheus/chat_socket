@@ -3,7 +3,7 @@ import { StyledChatBubble } from './styles'
 
 export enum ChatType {
     USER = 'sender',
-    SYSTEM = 'reciever'
+    SYSTEM = 'receiver'
 }
 
 export type IChat = {
