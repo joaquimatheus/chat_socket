@@ -9,6 +9,7 @@ export const StyledChat = styled.div`
     width: 500px;
     padding: 50px 0;
     margin: 0 auto;
+    overflow: auto;
 
     ul {
         display: flex;
