@@ -20,7 +20,7 @@ export const StyledThemePicker = styled.div`
         font-family: inherit;
 
         --switch: calc((var(--primary-val) - var(--threshold)) * -100%);
-        color: hsl(0, 0%, var(--switch))
+        color: hsl(0, 0%, var(--switch));
         cursor: pointer;
         outline: none;
         border: none;
