@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledChatBubble = styled.div`
     font-size: 14px;
     padding: 20px;
-    width: fit-contnet;
+    width: fit-content;
     max-width: 256px;
     background-color: var(--secondary);
     border-radius: 20px;
