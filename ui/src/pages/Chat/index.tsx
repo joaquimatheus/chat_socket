@@ -25,6 +25,8 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
 
     const loggedIn = getFromLocalStorage("login-state")
 
+    console.log(chatsEndRef);
+
     useEffect(() => {
         if (!chatsEndRef.current) return
             chatsEndRef.current.scrollIntoView({ behavior: "smooth" })
@@ -63,7 +65,7 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
                             classNames="chat-bubble"
                             timeout={{
                                 enter: chat.isDefault
-                                    ? chatAnimationDelay + (index + 1)
+                                    ? chatAnimationDelay * (index + 1)
                                     : TRANSITION_DELAY,
                             }}
                         >
