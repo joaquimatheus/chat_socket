@@ -10,11 +10,9 @@ export class SocketService {
     private socket:any = io(SERVER_URL)
 
     public initSocket(): void {
-        if (this.socket.connected) {
-            this.socket.emit('connected!')
-        } else {
-            console.log(`not connected`)
-        }
+        this.socket.on("connect", () => {
+            console.log(this.socket.id)
+        })
     }
 
     public send(message: IChat): void {
