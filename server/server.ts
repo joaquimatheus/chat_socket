@@ -36,7 +36,7 @@ export class ChatServer {
     private sockets(): void {
         this.io = new socketIo.Server(this.server, {
             cors: {
-                origin: 'http://localhost:8080'
+                origin: '*'
             }
         })
     }
@@ -46,8 +46,15 @@ export class ChatServer {
             console.log('Running server on port %s', this.port);
         });
 
-        this.io.on('connect', (socket: any) => {
+        this.io.on('connection', (socket: any) => {
+            console.log(socket.id)
+
+            console.log(socket.rooms)
+            socket.join("room1")
+            console.log(socket.rooms)
+
             console.log('Connected client on port %s.', this.port);
+
             socket.on('message', (m: Message) => {
                 console.log(`[server](message): %s`, JSON.stringify(m));
                 this.io.emit('message', m);
