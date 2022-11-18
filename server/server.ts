@@ -1,4 +1,5 @@
 import { createServer, Server } from 'http';
+import cors from 'cors';
 import express from 'express';
 import * as socketIo from 'socket.io';
 
@@ -9,7 +10,7 @@ export class ChatServer {
     private app: express.Application;
     private server: Server;
     private io: socketIo.Server;
-    private port: string | number
+    private port: string | number;
 
     constructor() {
         this.createApp();
@@ -21,6 +22,7 @@ export class ChatServer {
 
     private createApp(): void {
         this.app = express()
+        this.app.use(cors())
     }
 
     private createServer(): void {
@@ -32,7 +34,11 @@ export class ChatServer {
     }
 
     private sockets(): void {
-        this.io = new socketIo.Server(this.server)
+        this.io = new socketIo.Server(this.server, {
+            cors: {
+                origin: 'http://localhost:8080'
+            }
+        })
     }
 
     private listen(): void {
