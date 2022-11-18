@@ -22,6 +22,7 @@ const TRANSITION_DELAY = 100
 const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
     const [chats, setChats] = useState<IChat[]>(defaultChats)
     const [animate, setAnimate] = useState(false)
+    const [socket, setSocket] = useState<void>();
 
     const inputRef = createRef<HTMLInputElement>()
     const chatsEndRef = useRef<HTMLDivElement>(null)
@@ -39,9 +40,13 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
         setAnimate(true)
     }, [])
 
-    useEffect(() => {
-        initIoConnection()
-    }, [])
+    useEffect(() =>{
+        const newSocket = initIoConnection();
+        setSocket(newSocket);
+    }, [setSocket])
+
+    console.log(socket)
+
 
     const inputChatHandler = () => {
         if (!inputRef.current) return
@@ -62,9 +67,9 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
         sendMessage(chat.text)
     }
 
-    const initIoConnection = async (): Promise<void> => {
+    const initIoConnection = (): void => {
         const socketService = new SocketService();
-        await socketService.initSocket();
+        socketService.initSocket();
 
         const ioConnection = socketService.onMessage()
             .subscribe((message: IChat) => {
