@@ -1,0 +1,14 @@
+{
+    "files": [
+        "./server/*.ts",
+        "./server/core/model/*.ts"
+    ],
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "commonJS",
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "strictPropertyInitialization": false
+    }
+}

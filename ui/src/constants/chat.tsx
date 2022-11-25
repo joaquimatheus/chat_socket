@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid"
 
 export const defaultChats: IChat[] = [
     {
-        id: uuidv4,
+        id: uuidv4(),
         text: "hi theere!",
         type: ChatType.SYSTEM,
         isDefault: true,
@@ -21,7 +21,7 @@ export const defaultChats: IChat[] = [
         isDefault: true
     },
     {
-        id: uuidv4,
+        id: uuidv4(),
         text: "Can I help!",
         type: ChatType.SYSTEM,
         isDefault: true,

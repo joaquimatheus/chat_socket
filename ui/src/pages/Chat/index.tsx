@@ -10,6 +10,9 @@ import { getFromLocalStorage } from '../../helpers/storage'
 import { Icon } from '../../components/Icon'
 import ChatBubble, { ChatType, IChat } from '../../components/ChatBubble'
 
+import { SocketService } from '../../services/socketService'
+import { Event } from '../../model/Event'
+
 type Props = {
     chatAnimationDelay: number
 }
@@ -19,6 +22,7 @@ const TRANSITION_DELAY = 100
 const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
     const [chats, setChats] = useState<IChat[]>(defaultChats)
     const [animate, setAnimate] = useState(false)
+    const [socket, setSocket] = useState<void>();
 
     const inputRef = createRef<HTMLInputElement>()
     const chatsEndRef = useRef<HTMLDivElement>(null)
@@ -36,6 +40,14 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
         setAnimate(true)
     }, [])
 
+    useEffect(() =>{
+        const newSocket = initIoConnection();
+        setSocket(newSocket);
+    }, [setSocket])
+
+    console.log(socket)
+
+
     const inputChatHandler = () => {
         if (!inputRef.current) return
 
@@ -51,6 +63,40 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
             type: ChatType.USER
         }
         setChats((prev) => [ ...prev, chat ])
+
+        sendMessage(chat.text)
+    }
+
+    const initIoConnection = (): void => {
+        const socketService = new SocketService();
+        socketService.initSocket();
+
+        const ioConnection = socketService.onMessage()
+            .subscribe((message: IChat) => {
+                chats       
+            })
+
+        socketService.onEvent(Event.CONNECT)
+            .subscribe(() => {
+                console.log('connected')
+            });
+
+        socketService.onEvent(Event.DISCONNECT)
+            .subscribe(() => {
+                console.log('disconnect')
+            });
+    }
+
+    const sendMessage = (message: string): void => {
+        const socketService = new SocketService();
+
+        if (!message) {
+            return;
+        }
+
+        socketService.send({
+            content: message
+        })
     }
 
     return (
