@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from 'react'
+import { createRef, useEffect, useRef, useState } from 'react'
 import { ChatInput, StyledChat } from './styles'
 import { v4 as uuidv4 } from "uuid"
 import { Navigate } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { getFromLocalStorage } from '../../helpers/storage'
 import { Icon } from '../../components/Icon'
 import ChatBubble, { ChatType, IChat } from '../../components/ChatBubble'
 
-import { SocketService } from '../../services/socketService'
+import { socket as SocketService } from '../../services/socketService'
 import { Event } from '../../model/Event'
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 
 const TRANSITION_DELAY = 100
 
-const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
+const Chat = ({ chatAnimationDelay }: Props) => {
     const [chats, setChats] = useState<IChat[]>(defaultChats)
     const [animate, setAnimate] = useState(false)
     const [socket, setSocket] = useState<void>();
